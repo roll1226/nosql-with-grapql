@@ -1,4 +1,4 @@
-import { initializeApp, getFirestore } from "firebase-admin/app";
+import { initializeApp } from "firebase-admin/app";
 initializeApp();
 
 import express, { Express } from "express";
