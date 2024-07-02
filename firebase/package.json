@@ -4,14 +4,16 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --mode development",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "firebase:emulator": "firebase emulators:start"
+    "firebase:emulator": "firebase emulators:start --import=emulator-seed"
   },
   "dependencies": {
+    "@apollo/client": "^3.10.8",
     "firebase": "^10.12.2",
+    "graphql": "^16.9.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
