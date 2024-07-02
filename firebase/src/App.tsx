@@ -38,9 +38,7 @@ const UserComponent: React.FC<{ user: User }> = ({ user }) => {
 
 const App: React.FC = () => {
   // useQueryフックを使用してデータを取得
-  const { loading, error, data } = useQuery<GetUsersData>(
-    GET_USERS
-  );
+  const { loading, error, data } = useQuery<GetUsersData>(GET_USERS);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -50,7 +48,6 @@ const App: React.FC = () => {
   return (
     <div>
       <h1>My React and Apollo Client App</h1>
-      {/* userIdを適切に設定してください */}
       {getUsers.map((user) => (
         <UserComponent user={user} />
       ))}
