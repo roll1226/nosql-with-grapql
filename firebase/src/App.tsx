@@ -21,10 +21,6 @@ interface GetUsersData {
   getUsers: User[];
 }
 
-// interface GetUserVars {
-//   id: string;
-// }
-
 const UserComponent: React.FC<{ user: User }> = ({ user }) => {
   return (
     <div>
