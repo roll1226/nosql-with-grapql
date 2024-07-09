@@ -11,15 +11,15 @@ export const GET_USERS = gql`
   }
 `;
 
-export interface User {
+export type User = {
   id: string;
   name: string;
   email: string;
-}
+};
 
-interface GetUsersData {
+type GetUsersData = {
   getUsers: User[];
-}
+};
 
 type UseUserQueryReturn = {
   loading: boolean;
