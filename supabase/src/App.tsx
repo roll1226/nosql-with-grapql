@@ -1,33 +1,6 @@
-import { gql, useQuery } from "@apollo/client";
+import { User, useUserQuery } from "./graphql/useUserQuery";
 
 // GraphQLクエリの定義
-const GET_USERS = gql`
-  query GetUsers {
-    usersCollection {
-      edges {
-        node {
-          id
-          name
-          email
-        }
-      }
-    }
-  }
-`;
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-}
-
-interface GetUsersData {
-  usersCollection: {
-    edges: {
-      node: User;
-    }[];
-  };
-}
 
 // interface GetUserVars {
 //   id: string;
@@ -46,7 +19,7 @@ const UserComponent: React.FC<{ user: User }> = ({ user }) => {
 
 const App: React.FC = () => {
   // useQueryフックを使用してデータを取得
-  const { loading, error, data } = useQuery<GetUsersData>(GET_USERS);
+  const { loading, error, data } = useUserQuery();
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
