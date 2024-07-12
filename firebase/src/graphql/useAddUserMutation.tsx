@@ -5,7 +5,6 @@ import {
   FetchResult,
   gql,
   MutationFunctionOptions,
-  OperationVariables,
   useMutation,
 } from "@apollo/client";
 import { useState } from "react";
@@ -26,16 +25,21 @@ export type User = {
   email: string;
 };
 
-type AddUserData = {
-  getUsers: User[];
+export type AddUserData = {
+  addUser: User;
 };
+
+export interface AddUserVars {
+  name: string;
+  email: string;
+}
 
 type UseAddUserMutationReturn = {
   addUser: (
     options?:
       | MutationFunctionOptions<
           AddUserData,
-          OperationVariables,
+          AddUserVars,
           DefaultContext,
           ApolloCache<unknown>
         >
@@ -55,8 +59,10 @@ type UseAddUserMutation = () => UseAddUserMutationReturn;
 export const useAddUserMutation: UseAddUserMutation = () => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const [addUser, { data, loading, error }] =
-    useMutation<AddUserData>(ADD_USER);
+  const [addUser, { data, loading, error }] = useMutation<
+    AddUserData,
+    AddUserVars
+  >(ADD_USER);
 
   return {
     addUser,
