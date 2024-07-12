@@ -22,9 +22,9 @@ const App: React.FC = () => {
   const { loading, error, data } = useUserQuery();
   const {
     addUser,
-    data: MutationData,
-    loading: MutationLoading,
-    error: MutationError,
+    data: mutationData,
+    loading: mutationLoading,
+    error: mutationError,
     name,
     setName,
     email,
@@ -34,8 +34,8 @@ const App: React.FC = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  if (MutationLoading) return <p>Loading</p>;
-  if (error) return <p>Error: {MutationError?.message}</p>;
+  if (mutationLoading) return <p>Loading</p>;
+  if (error) return <p>Error: {mutationError?.message}</p>;
 
   const { getUsers } = data!;
 
@@ -75,12 +75,12 @@ const App: React.FC = () => {
         <button type="submit">Add User</button>
       </form>
 
-      {MutationData && (
+      {mutationData && (
         <div>
           <h2>Added User</h2>
-          <p>ID: {MutationData.addUser.id}</p>
-          <p>Name: {MutationData.addUser.name}</p>
-          <p>Email: {MutationData.addUser.email}</p>
+          <p>ID: {mutationData.addUser.id}</p>
+          <p>Name: {mutationData.addUser.name}</p>
+          <p>Email: {mutationData.addUser.email}</p>
         </div>
       )}
     </div>
