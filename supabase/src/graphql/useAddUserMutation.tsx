@@ -28,7 +28,7 @@ export type User = {
 };
 
 export type AddUserData = {
- insertIntousersCollection: {
+  insertIntousersCollection: {
     records: User[];
   };
 };
