@@ -1,16 +1,8 @@
+import { AddUserCard } from "./components/AddUserCard";
+import { AddUserForm } from "./components/AddUserForm";
+import { UserCard } from "./components/UserCard";
 import { useAddUserMutation } from "./graphql/useAddUserMutation";
-import { User, useUserQuery } from "./graphql/useUserQuery";
-
-const UserComponent: React.FC<{ user: User }> = ({ user }) => {
-  return (
-    <div>
-      <h2>User Details</h2>
-      <p>ID: {user.id}</p>
-      <p>Name: {user.name}</p>
-      <p>Email: {user.email}</p>
-    </div>
-  );
-};
+import { useUserQuery } from "./graphql/useUserQuery";
 
 const App: React.FC = () => {
   // useQueryフックを使用してデータを取得
@@ -44,40 +36,19 @@ const App: React.FC = () => {
     <div>
       <h1>My React and Apollo Client App</h1>
       {edges.map((u, key) => (
-        <UserComponent user={u.node} key={key} />
+        <UserCard user={u.node} key={key} />
       ))}
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <button type="submit" disabled={mutationLoading}>
-          Add User
-        </button>
-      </form>
-      {mutationData && (
-        <div>
-          <h2>Added User</h2>
-          <p>ID: {mutationData.insertIntousersCollection.records[0].id}</p>
-          <p>Name: {mutationData.insertIntousersCollection.records[0].name}</p>
-          <p>
-            Email: {mutationData.insertIntousersCollection.records[0].email}
-          </p>
-        </div>
-      )}
+      <AddUserForm
+        name={name}
+        email={email}
+        onChangeName={(e) => setName(e.target.value)}
+        onChangeEmail={(e) => setEmail(e.target.value)}
+        handleSubmit={handleSubmit}
+        loading={mutationLoading}
+      />
+
+      <AddUserCard addUser={mutationData} />
       {mutationError && <p>Error adding user</p>}
     </div>
   );
