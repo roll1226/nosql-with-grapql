@@ -1,22 +1,14 @@
 import { MutationFunctionOptions } from "@apollo/client";
 import { FormEvent } from "react";
+import { AddUserCard } from "./components/AddUserCard";
+import { AddUserForm } from "./components/AddUserForm";
+import { UserCard } from "./components/UserCard";
 import {
   AddUserData,
   AddUserVars,
   useAddUserMutation,
 } from "./graphql/useAddUserMutation";
-import { User, useUserQuery } from "./graphql/useUserQuery";
-
-const UserComponent: React.FC<{ user: User }> = ({ user }) => {
-  return (
-    <div>
-      <h2>User Details</h2>
-      <p>ID: {user.id}</p>
-      <p>Name: {user.name}</p>
-      <p>Email: {user.email}</p>
-    </div>
-  );
-};
+import { useUserQuery } from "./graphql/useUserQuery";
 
 const App: React.FC = () => {
   const { loading, error, data } = useUserQuery();
@@ -56,33 +48,18 @@ const App: React.FC = () => {
     <div>
       <h1>My React and Apollo Client App</h1>
       {getUsers.map((user) => (
-        <UserComponent user={user} />
+        <UserCard user={user} />
       ))}
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Name"
-        />
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-        />
-        <button type="submit">Add User</button>
-      </form>
+      <AddUserForm
+        name={name}
+        email={email}
+        onChangeName={(e) => setName(e.target.value)}
+        onChangeEmail={(e) => setEmail(e.target.value)}
+        handleSubmit={handleSubmit}
+      />
 
-      {mutationData && (
-        <div>
-          <h2>Added User</h2>
-          <p>ID: {mutationData.addUser.id}</p>
-          <p>Name: {mutationData.addUser.name}</p>
-          <p>Email: {mutationData.addUser.email}</p>
-        </div>
-      )}
+      <AddUserCard addUser={mutationData} />
     </div>
   );
 };
