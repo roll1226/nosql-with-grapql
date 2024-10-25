@@ -21,13 +21,13 @@ export const AddUserForm: FC<AddUserFormProps> = ({
         type="text"
         value={name}
         onChange={onChangeName}
-        placeholder="Name"
+        placeholder="名前"
       />
       <input
         type="email"
         value={email}
         onChange={onChangeEmail}
-        placeholder="Email"
+        placeholder="メールアドレス"
       />
       <button type="submit">Add User</button>
     </form>

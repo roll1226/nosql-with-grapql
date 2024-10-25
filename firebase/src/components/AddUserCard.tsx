@@ -10,10 +10,10 @@ export const AddUserCard: FC<AddUserCardType> = ({ addUser }) => {
 
   return (
     <div>
-      <h2>Added User</h2>
+      <h2>追加ユーザー</h2>
       <p>ID: {addUser.addUser.id}</p>
-      <p>Name: {addUser.addUser.name}</p>
-      <p>Email: {addUser.addUser.email}</p>
+      <p>名前: {addUser.addUser.name}</p>
+      <p>メールアドレス: {addUser.addUser.email}</p>
     </div>
   );
 };
