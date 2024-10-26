@@ -20,6 +20,7 @@ const App: React.FC = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
+  if (mutationError) return <p>${mutationError.message}</p>;
 
   const { edges } = data!.usersCollection;
 
@@ -49,7 +50,6 @@ const App: React.FC = () => {
       />
 
       <AddUserCard addUser={mutationData} />
-      {mutationError && <p>Error adding user</p>}
     </div>
   );
 };
