@@ -29,7 +29,7 @@ export const AddUserForm: FC<AddUserFormProps> = ({
         onChange={onChangeEmail}
         placeholder="メールアドレス"
       />
-      <button type="submit">Add User</button>
+      <button type="submit">ユーザー追加</button>
     </form>
   );
 };
