@@ -8,6 +8,19 @@ import server from "./graphql";
 
 const app = express();
 
+/**
+ * Start the ApolloServer
+ *
+ * @returns {Promise<void>}
+ * @memberof ApolloServer
+ * @name start
+ * @param {void}
+ * @returns {Promise<void>}
+ * @example
+ * server.start().then(() => {
+ *  app.use("/", expressMiddleware(server));
+ * });
+  */
 server.start().then(() => {
   app.use("/", expressMiddleware(server));
 });
